@@ -1,19 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
-bool DDFS(list<int>* adj, bool* recstack, int sv, bool* visited){
-	recstack[sv] = true;
+void DDFS(list<int>* adj, stack<int> &s, int sv, bool* visited){
 	visited[sv] = true;
 	list<int>::iterator it;
 	for(it = adj[sv].begin();it!=adj[sv].end();it++){
-		if(!visited[*it] && DDFS(adj, recstack, *it, visited)){
-			return true;
+		if(!visited[*it]){
+			DDFS(adj, s, *it, visited);
 		}
-		else if(recstack[*it])
-			return true;
 	}
-	recstack[sv] = false;
-	return false;
-	
+	s.push(sv);
 }
 int main(){
 	int V,E;
@@ -24,11 +19,19 @@ int main(){
 		cin>>u>>v;
 		adj[u].push_back(v);
 	}
+	stack<int> s;
 	bool* visited = new bool[V];
 	for(int i = 0;i<V;i++){
 		visited[i] = false;
 	}
-	bool* recstack = visited;
-	cout<<DDFS(adj, recstack, 0,visited);
+	for(int i = 0;i<V;i++){
+		if(!visited[i])
+		DDFS(adj, s, i, visited);
+	}
+
+	while(!s.empty()){
+		cout<<s.top()<<" ";
+		s.pop();
+	}
 
 }
