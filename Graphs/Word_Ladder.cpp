@@ -4,7 +4,7 @@ int shortestChainLen(string start, string target, set<string> &D){
 	if (D.find(target) == D.end()) 
         return 0; 
 
-	int level, wsize = start.size();
+	int level = 0, wsize = start.size();
 	queue<string> q;
 	q.push(start);
 
