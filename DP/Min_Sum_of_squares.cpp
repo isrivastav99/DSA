@@ -11,8 +11,10 @@ int CalcMinSteps(int n, int* dp){
 
 		for(int j = 1;j<=floor(sqrt(i));j++){
 			int t = j*j;
-
-			dp[i] = min(dp[i], 1 + dp[i  - t]);
+			if(t>i)
+				break;
+			else
+				dp[i] = min(dp[i], 1 + dp[i  - t]);
 		}
 	}
 
