@@ -23,6 +23,6 @@ int main()
                 cout<<s.substr(0,mp[ans])<<"("<<s.substr(mp[ans])<<")";
             }
         }
-        cout<<endll;
+        cout<<endl;
         
 }
